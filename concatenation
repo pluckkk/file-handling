@@ -1,0 +1,20 @@
+import java.io.*;
+public class fileconcat {
+    public static void main(String[] args) throws IOException {
+    FileInputStream f1 = new FileInputStream("file0.txt");
+    FileInputStream f2 = new FileInputStream("file1.txt");
+
+    FileOutputStream f3 = new FileOutputStream("file3.txt");
+    SequenceInputStream comb = new SequenceInputStream(f1,f2);
+
+    int j;
+    while((j = comb.read())!=-1){
+        f3.write(j);
+    }
+    System.out.println("file combined successfully !!");
+    comb.close();
+    f1.close();
+    f2.close();
+    f3.close();
+   }
+}
