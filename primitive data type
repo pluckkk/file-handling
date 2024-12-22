@@ -1,0 +1,39 @@
+import java.io.*;
+
+public class FilePrimitiveReadWrite {
+    public static void main(String[] args) {
+        try {
+            // Create a DataOutputStream to write primitive types to a file
+            DataOutputStream dos = new DataOutputStream(new FileOutputStream("file1.txt"));
+
+            // Writing primitives to the file
+            dos.writeInt(42);        // Write an integer
+            dos.writeDouble(3.14);   // Write a double
+            dos.writeChar('A');      // Write a char
+            dos.writeBoolean(true);  // Write a boolean
+
+            dos.close(); // Always close the stream after writing
+            System.out.println("Primitives written to file.");
+
+            // Create a DataInputStream to read primitive types from the file
+            DataInputStream dis = new DataInputStream(new FileInputStream("file1.txt"));
+
+            // Reading the primitive types from the file in the same order they were written
+            int intValue = dis.readInt();        // Read an integer
+            double doubleValue = dis.readDouble();  // Read a double
+            char charValue = dis.readChar();       // Read a char
+            boolean booleanValue = dis.readBoolean();  // Read a boolean
+
+            // Print the read values
+            System.out.println("Read integer: " + intValue);
+            System.out.println("Read double: " + doubleValue);
+            System.out.println("Read char: " + charValue);
+            System.out.println("Read boolean: " + booleanValue);
+
+            dis.close(); // Always close the stream after reading
+
+        } catch (IOException e) {
+            e.printStackTrace();  // Print the stack trace if an error occurs
+        }
+    }
+}
