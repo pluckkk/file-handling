@@ -1,0 +1,34 @@
+//NR
+import java.io.RandomAccessFile;
+import java.io.IOException;
+
+public class SimpleRandomAccessFile {
+    public static void main(String[] args) {
+        try {
+            // Create a RandomAccessFile instance
+            RandomAccessFile file = new RandomAccessFile("example.txt", "rw");
+
+            // Write some simple data
+            file.writeBytes("Hello World!\n"); // Write a string
+            file.writeInt(12345);             // Write an integer
+
+            // Move the pointer to the beginning to read the data
+            file.seek(0);
+
+            // Read the string (first 12 characters, including newline)
+            byte[] buffer = new byte[12];
+            file.read(buffer);
+            String text = new String(buffer);
+            System.out.println("Text: " + text);
+
+            // Read the integer
+            int number = file.readInt();
+            System.out.println("Number: " + number);
+
+            // Close the file
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
