@@ -1,0 +1,44 @@
+import  java.io.*;
+
+public class rw {
+
+public static void main(String args[]) throws IOException {
+    // Create a DataInputStream object to read data from the user input (keyboard)
+    DataInputStream dis= new DataInputStream(System.in);
+
+    // Create a FileOutputStream object to write data to the file "file2.txt"
+    // The 'true' flag in FileOutputStream indicates that data will be appended to the file
+    FileOutputStream fout = new FileOutputStream("file2.txt", true);
+
+    // Create a BufferedOutputStream to wrap the FileOutputStream, providing buffered writing
+    // The buffer size is set to 1024 bytes (1 KB)
+    BufferedOutputStream bout = new BufferedOutputStream(fout, 1024);
+
+    System.out.println("Enter the text (. at the end):");
+
+    char ch;
+    // Read user input until '#' is encountered
+    while ((ch = (char) dis.read()) != '.') {
+        // Write each character to the file
+        bout.write(ch);
+    }
+
+    // Close the BufferedOutputStream (flushes data to the file)
+    bout.close();
+
+    // Create a FileInputStream to read the contents of "file2.txt"
+    FileInputStream fin = new FileInputStream("file2.txt");
+
+    System.out.println("File contents::::::::::::::::");
+
+    int ch1;
+    // Read the file and print each character until EOF (-1) is reached
+    while ((ch1 = fin.read()) != -1) {
+        // Print each character read from the file
+        System.out.print((char) ch1);
+    }
+
+    // Close the FileInputStream
+    fin.close();
+}
+}
